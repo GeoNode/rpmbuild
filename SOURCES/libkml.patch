@@ -1,0 +1,168 @@
+Index: configure.ac
+===================================================================
+--- configure.ac	(revision 864)
++++ configure.ac	(working copy)
+@@ -7,6 +7,7 @@
+ AC_CONFIG_SRCDIR(README)
+ AC_CONFIG_AUX_DIR(config)
+ AM_INIT_AUTOMAKE(-Wall -Werror)
++m4_ifdef([AM_PROG_AR], [AM_PROG_AR])
+ 
+ AC_PROG_CPP
+ AC_PROG_CXX
+Index: examples/gx/Makefile.am
+===================================================================
+--- examples/gx/Makefile.am	(revision 864)
++++ examples/gx/Makefile.am	(working copy)
+@@ -2,7 +2,7 @@
+ 	      -I$(top_srcdir)/third_party/boost_1_34_1
+ 
+ if GCC
+-AM_CXXFLAGS = -Wall -Werror -ansi -pedantic -fno-rtti
++AM_CXXFLAGS = -Wall -Werror -ansi -pedantic -Wno-long-long -fno-rtti
+ endif
+ 
+ noinst_PROGRAMS = \
+Index: examples/xsd/Makefile.am
+===================================================================
+--- examples/xsd/Makefile.am	(revision 864)
++++ examples/xsd/Makefile.am	(working copy)
+@@ -3,7 +3,7 @@
+ 	      -I$(top_srcdir)/third_party/boost_1_34_1
+ 
+ if GCC
+-AM_CXXFLAGS = -Wall -Werror -ansi -pedantic -fno-rtti
++AM_CXXFLAGS = -Wall -Werror -ansi -pedantic -Wno-long-long -fno-rtti
+ endif
+ 
+ noinst_PROGRAMS = xsdchildren xsdcoverage xsdelements xsdenums xsdfind xsdtypes
+Index: examples/gpx/Makefile.am
+===================================================================
+--- examples/gpx/Makefile.am	(revision 864)
++++ examples/gpx/Makefile.am	(working copy)
+@@ -2,7 +2,7 @@
+ 	      -I$(top_srcdir)/third_party/boost_1_34_1
+ 
+ if GCC
+-AM_CXXFLAGS = -Wall -Werror -ansi -pedantic -fno-rtti
++AM_CXXFLAGS = -Wall -Werror -ansi -pedantic -Wno-long-long -fno-rtti
+ endif
+ 
+ noinst_PROGRAMS = gpxtracktokml
+Index: examples/engine/Makefile.am
+===================================================================
+--- examples/engine/Makefile.am	(revision 864)
++++ examples/engine/Makefile.am	(working copy)
+@@ -2,7 +2,7 @@
+ 	      -I$(top_srcdir)/third_party/boost_1_34_1
+ 
+ if GCC
+-AM_CXXFLAGS = -Wall -Werror -ansi -pedantic -fno-rtti
++AM_CXXFLAGS = -Wall -Werror -ansi -pedantic -Wno-long-long -fno-rtti
+ endif
+ 
+ noinst_PROGRAMS = \
+Index: examples/regionator/Makefile.am
+===================================================================
+--- examples/regionator/Makefile.am	(revision 864)
++++ examples/regionator/Makefile.am	(working copy)
+@@ -3,7 +3,7 @@
+               -I$(top_srcdir)/third_party/zlib-1.2.3/contrib
+ 
+ if GCC
+-AM_CXXFLAGS = -Wall -Werror -ansi -pedantic -fno-rtti
++AM_CXXFLAGS = -Wall -Werror -ansi -pedantic -Wno-long-long -fno-rtti
+ endif
+ 
+ noinst_PROGRAMS = csvregionator kmlregionator
+Index: examples/hellonet/Makefile.am
+===================================================================
+--- examples/hellonet/Makefile.am	(revision 864)
++++ examples/hellonet/Makefile.am	(working copy)
+@@ -4,7 +4,7 @@
+ 	      -I$(top_srcdir)/third_party/boost_1_34_1
+ 
+ if GCC
+-AM_CXXFLAGS = -Wall -Werror -ansi -pedantic -fno-rtti
++AM_CXXFLAGS = -Wall -Werror -ansi -pedantic -Wno-long-long -fno-rtti
+ endif
+ 
+ noinst_PROGRAMS = csvurl2gmap getgmapkml getgsheetcsv getgsheetkml \
+Index: examples/helloworld/Makefile.am
+===================================================================
+--- examples/helloworld/Makefile.am	(revision 864)
++++ examples/helloworld/Makefile.am	(working copy)
+@@ -4,7 +4,7 @@
+ 
+ 
+ if GCC
+-AM_CXXFLAGS = -Wall -Werror -ansi -pedantic -fno-rtti
++AM_CXXFLAGS = -Wall -Werror -ansi -pedantic -Wno-long-long -fno-rtti
+ endif
+ 
+ noinst_LTLIBRARIES = libhelloutil.la
+Index: src/kml/engine/Makefile.am
+===================================================================
+--- src/kml/engine/Makefile.am	(revision 864)
++++ src/kml/engine/Makefile.am	(working copy)
+@@ -3,7 +3,7 @@
+ 	     -I$(top_srcdir)/third_party/googletest-r108/include
+ 
+ if GCC
+-AM_CXXFLAGS = -Wall -Wextra -Wno-unused-parameter -Werror -ansi -pedantic -fno-rtti
++AM_CXXFLAGS = -Wall -Wextra -Wno-unused-parameter -Werror -ansi -pedantic -Wno-long-long -fno-rtti
+ AM_TEST_CXXFLAGS = -Wall -Wextra -Wno-unused-parameter -Werror -ansi -fno-rtti -DGTEST_HAS_RTTI=0
+ endif
+ 
+Index: src/kml/regionator/Makefile.am
+===================================================================
+--- src/kml/regionator/Makefile.am	(revision 864)
++++ src/kml/regionator/Makefile.am	(working copy)
+@@ -4,7 +4,7 @@
+ 
+ 
+ if GCC
+-AM_CXXFLAGS = -Wall -Wextra -Wno-unused-parameter -Werror -ansi -pedantic -fno-rtti
++AM_CXXFLAGS = -Wall -Wextra -Wno-unused-parameter -Werror -ansi -pedantic -Wno-long-long -fno-rtti
+ AM_TEST_CXXFLAGS = -Wall -Wextra -Wno-unused-parameter -Werror -ansi -fno-rtti -DGTEST_HAS_RTTI=0
+ endif
+ 
+Index: src/kml/convenience/Makefile.am
+===================================================================
+--- src/kml/convenience/Makefile.am	(revision 864)
++++ src/kml/convenience/Makefile.am	(working copy)
+@@ -3,7 +3,7 @@
+               -I$(top_srcdir)/third_party/googletest-r108/include
+ 
+ if GCC
+-AM_CXXFLAGS = -Wall -Wextra -Wno-unused-parameter -Werror -ansi -pedantic -fno-rtti
++AM_CXXFLAGS = -Wall -Wextra -Wno-unused-parameter -Werror -ansi -pedantic -Wno-long-long -fno-rtti
+ AM_TEST_CXXFLAGS = -Wall -Wextra -Wno-unused-parameter -Werror -ansi -fno-rtti -DGTEST_HAS_RTTI=0
+ endif
+ 
+Index: src/kml/xsd/Makefile.am
+===================================================================
+--- src/kml/xsd/Makefile.am	(revision 864)
++++ src/kml/xsd/Makefile.am	(working copy)
+@@ -3,7 +3,7 @@
+ 	      -I$(top_srcdir)/third_party/googletest-r108/include
+ 
+ if GCC
+-AM_CXXFLAGS = -Wall -Wextra -Wno-unused-parameter -Werror -ansi -pedantic -fno-rtti
++AM_CXXFLAGS = -Wall -Wextra -Wno-unused-parameter -Werror -ansi -pedantic -Wno-long-long -fno-rtti
+ AM_TEST_CXXFLAGS = -Wall -Wextra -Wno-unused-parameter -Werror -ansi -fno-rtti -DGTEST_HAS_RTTI=0
+ endif
+ 
+Index: src/kml/dom/Makefile.am
+===================================================================
+--- src/kml/dom/Makefile.am	(revision 864)
++++ src/kml/dom/Makefile.am	(working copy)
+@@ -3,7 +3,7 @@
+ 	     -I$(top_srcdir)/third_party/googletest-r108/include
+ 
+ if GCC
+-AM_CXXFLAGS = -Wall -Wextra -Wno-unused-parameter -Werror -ansi -pedantic -fno-rtti
++AM_CXXFLAGS = -Wall -Wextra -Wno-unused-parameter -Werror -ansi -pedantic -Wno-long-long -fno-rtti
+ AM_TEST_CXXFLAGS = -Wall -Wextra -Wno-unused-parameter -Werror -ansi -fno-rtti -DGTEST_HAS_RTTI=0
+ endif
+ 

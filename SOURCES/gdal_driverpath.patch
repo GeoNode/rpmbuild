@@ -1,0 +1,11 @@
+--- gcore/gdaldrivermanager.cpp	2011-07-09 09:33:34.000000000 -0700
++++ gcore/gdaldrivermanager_64.cpp	2012-02-13 13:01:38.000000000 -0800
+@@ -567,7 +567,7 @@
+     #ifdef MACOSX_FRAMEWORK
+                                         GDAL_PREFIX "/PlugIns");
+     #else
+-                                        GDAL_PREFIX "/lib/gdalplugins" );
++                                        GDAL_PREFIX "/lib64/gdalplugins" );
+     #endif
+ #else
+         char szExecPath[1024];

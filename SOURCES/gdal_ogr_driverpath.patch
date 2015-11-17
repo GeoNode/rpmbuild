@@ -1,0 +1,11 @@
+--- ogr/ogrsf_frmts/generic/ogrsfdriverregistrar.cpp	2012-07-20 09:45:16.000000000 -0700
++++ ogr/ogrsf_frmts/generic/ogrsfdriverregistrar_64.cpp	2012-07-20 09:45:24.000000000 -0700
+@@ -807,7 +807,7 @@
+     #ifdef MACOSX_FRAMEWORK
+                                         GDAL_PREFIX "/PlugIns");
+     #else
+-                                        GDAL_PREFIX "/lib/gdalplugins" );
++                                        GDAL_PREFIX "/lib64/gdalplugins" );
+     #endif
+ #else
+         char szExecPath[1024];
