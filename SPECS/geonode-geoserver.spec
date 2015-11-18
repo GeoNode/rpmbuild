@@ -1,7 +1,7 @@
 # Define Constants
 %define name geonode-geoserver
 %define realname geoserver
-%define version 2.7.5
+%define version 2.7
 %define release 0.1%{?dist}
 %define _unpackaged_files_terminate_build 0
 %define __os_install_post %{nil}
@@ -11,13 +11,14 @@ Version:       %{version}
 Release:       %{release}
 Summary:       A version of GeoServer that is enhanced and designed for use with GeoNode %{version}.
 Group:         Development/Libraries
+License:       GPLv2
 BuildRequires: unzip
 Requires:      %{name} = %{version}-%{release}
 Requires:      tomcat
 Requires:      java-1.7.0-openjdk
 Conflicts:     geoserver
-Patch0:        geoshape.web.xml.patch
-Patch1:        geoshape.context.xml.patch
+Patch0:        web.xml.patch
+Patch1:        context.xml.patch
 BuildArch:     noarch
 
 %description
@@ -95,5 +96,5 @@ fi
 %attr(-,tomcat,tomcat) %{_sysconfdir}/tomcat/Catalina/localhost/geoserver.xml
 
 %changelog
-* Sun Nov 8 2015 Daniel Berry <dberry@boundlessgeo.com> 2.7.5
+* Sun Nov 8 2015 Daniel Berry <dberry@boundlessgeo.com> 2.7
 - Initial configuration for GeoNode 2.4
