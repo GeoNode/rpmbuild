@@ -31,6 +31,7 @@ python2.7 setup.py build
 
 %install
 python2.7 setup.py install --prefix=/usr/local --single-version-externally-managed -O1 --root=$RPM_BUILD_ROOT --record=INSTALLED_FILES
+sed --in-place '/.pyc/d' INSTALLED_FILES
 
 %clean
 rm -fr $RPM_BUILD_ROOT

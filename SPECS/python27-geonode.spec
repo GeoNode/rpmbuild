@@ -1,14 +1,14 @@
-%define name python27-geonode-agon-ratings
-%define version 0.3.1
-%define realname geonode-agon-ratings
+%define name python27-geonode
+%define version 2.4c2
+%define realname GeoNode
 %define release 1%{?dist}
 
-Summary: Fork of agon-ratings: a user ratings app.
+Summary: Application for serving and sharing geospatial data
 Name: %{name}
 Version: %{version}
 Release: %{release}
-Source: https://pypi.python.org/packages/source/g/geonode-agon-ratings/geonode-agon-ratings-%{version}.tar.gz
-License: BSD
+Source: https://pypi.python.org/packages/source/G/GeoNode/GeoNode-%{version}.tar.gz
+License: GPL
 Group: Development/Libraries
 Packager: Daniel Berry <dberry@boundlessgeo.com>
 BuildRequires: python27
@@ -18,7 +18,7 @@ Prefix: %{_prefix}
 BuildArch: noarch
 
 %description
-Fork of agon-ratings: a user ratings app.
+Application for serving and sharing geospatial data
 
 %define _unpackaged_files_terminate_build 0
 
@@ -40,5 +40,5 @@ rm -fr $RPM_BUILD_ROOT
 %defattr(-,root,root)
 
 %changelog
-* Tue Nov 17 2015 Daniel Berry <dberry@boundlessgeo.com> 0.3.1
+* Tue Nov 17 2015 Daniel Berry <dberry@boundlessgeo.com> 2.4c2
 - Initial configuration for GeoNode 2.4

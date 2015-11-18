@@ -1,13 +1,13 @@
-%define name python27-geonode-agon-ratings
-%define version 0.3.1
-%define realname geonode-agon-ratings
+%define name python27-django-guardian
+%define version 1.2.0
+%define realname django-guardian
 %define release 1%{?dist}
 
-Summary: Fork of agon-ratings: a user ratings app.
+Summary: Implementation of per object permissions for Django
 Name: %{name}
 Version: %{version}
 Release: %{release}
-Source: https://pypi.python.org/packages/source/g/geonode-agon-ratings/geonode-agon-ratings-%{version}.tar.gz
+Source: https://pypi.python.org/packages/source/d/django-guardian/django-guardian-%{version}.tar.gz
 License: BSD
 Group: Development/Libraries
 Packager: Daniel Berry <dberry@boundlessgeo.com>
@@ -18,7 +18,7 @@ Prefix: %{_prefix}
 BuildArch: noarch
 
 %description
-Fork of agon-ratings: a user ratings app.
+Implementation of per object permissions for Django.
 
 %define _unpackaged_files_terminate_build 0
 
@@ -30,7 +30,7 @@ Fork of agon-ratings: a user ratings app.
 python2.7 setup.py build
 
 %install
-python2.7 setup.py install --prefix=/usr/local --root=$RPM_BUILD_ROOT --record=INSTALLED_FILES
+python2.7 setup.py install --prefix=/usr/local --single-version-externally-managed -O1 --root=$RPM_BUILD_ROOT --record=INSTALLED_FILES
 sed --in-place '/.pyc/d' INSTALLED_FILES
 
 %clean
@@ -40,5 +40,5 @@ rm -fr $RPM_BUILD_ROOT
 %defattr(-,root,root)
 
 %changelog
-* Tue Nov 17 2015 Daniel Berry <dberry@boundlessgeo.com> 0.3.1
+* Tue Nov 17 2015 Daniel Berry <dberry@boundlessgeo.com> 1.2.0
 - Initial configuration for GeoNode 2.4
