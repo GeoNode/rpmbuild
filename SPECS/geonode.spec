@@ -1,7 +1,7 @@
 # Define Constants
 %define name geonode
 %define version 2.4.0
-%define release 1%{?dist}
+%define release 0.1%{?dist}
 %define _unpackaged_files_terminate_build 0
 %define __os_install_post %{nil}
 
@@ -196,6 +196,20 @@ fi
 %files
 %defattr(755,%{name},%{name},755)
 %dir %{_localstatedir}/lib/%{name}
+%{_localstatedir}/lib/%{name}/manage.py
+%{_localstatedir}/lib/%{name}/setup.py
+%dir %{_localstatedir}/lib/%{name}/sdi
+%{_localstatedir}/lib/%{name}/sdi/__init__.py
+%{_localstatedir}/lib/%{name}/sdi/settings.py
+%{_localstatedir}/lib/%{name}/sdi/static/README
+%{_localstatedir}/lib/%{name}/sdi/static/css/site_base.css
+%{_localstatedir}/lib/%{name}/sdi/static/img/README
+%{_localstatedir}/lib/%{name}/sdi/static/js/README
+%{_localstatedir}/lib/%{name}/sdi/templates/robots.txt
+%{_localstatedir}/lib/%{name}/sdi/templates/site_base.html
+%{_localstatedir}/lib/%{name}/sdi/templates/site_index.html
+%{_localstatedir}/lib/%{name}/sdi/urls.py
+%{_localstatedir}/lib/%{name}/sdi/wsgi.py
 %config(noreplace) %{_localstatedir}/lib/%{name}/sdi/local_settings.py
 %defattr(744,%{name},%{name},744)
 %dir %{_localstatedir}/log/%{name}
