@@ -11,7 +11,7 @@ sudo psql -U postgres -c "CREATE DATABASE geonode_data OWNER geonode;"
 sudo psql -U postgres -d geonode_data -c 'CREATE EXTENSION postgis;'
 sudo psql -U postgres -d geonode_data -c 'GRANT ALL ON geometry_columns TO PUBLIC;'
 sudo psql -U postgres -d geonode_data -c 'GRANT ALL ON spatial_ref_sys TO PUBLIC;'
-sudo psql -U geoshape -d geonode < /var/lib/geoserver/geonode_authorize_layer.sql
+sudo psql -U geonode -d geonode < /var/lib/geoserver/geonode_authorize_layer.sql
 
 # Configure GeoNode
 python2.7 /var/lib/geonode/manage.py collectstatic

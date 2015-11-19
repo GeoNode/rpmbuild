@@ -43,7 +43,7 @@ Requires:         python27-celery = 3.1.17
 Requires:         python27-dateutil = 2.4.2
 Requires:         python27-django-activity-stream = 0.4.5beta1
 Requires:         python27-django-appconf = 0.5
-Requires:         python27-django-autocomplete-light = 1.4.14
+Requires:         python27-django-autocomplete-light = 2.2.10
 Requires:         python27-django-bootstrap3-datetimepicker = 2.2.3
 Requires:         python27-django-celery = 3.1.16
 Requires:         python27-django-downloadview = 1.2
@@ -173,7 +173,7 @@ getent passwd %{name} >/dev/null || useradd -r -d %{_localstatedir}/lib/geonode 
 %post
 if [ $1 -eq 1 ] ; then
   /sbin/chkconfig --add %{name}
-  ln -s %{_localstatedir}/lib/%{name}/%{name}/local_settings.py %{_sysconfdir}/%{name}/local_settings.py
+  ln -s %{_localstatedir}/lib/%{name}/sdi/local_settings.py %{_sysconfdir}/%{name}/local_settings.py
   echo ""
   echo " GeoNode Version - %{version}-%{release} "
   echo ""

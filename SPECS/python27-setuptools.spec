@@ -27,17 +27,21 @@ Easily download, build, install, upgrade, and uninstall Python packages.
 %setup -n setuptools-%{version}
 
 %build
-   if [ -f 'setuptools/script (dev).tmpl' ]; then
-      mv 'setuptools/script (dev).tmpl' 'setuptools/script(dev).tmpl'
-   fi
-   python2.7 setup.py build
+if [ -f 'setuptools/script (dev).tmpl' ]; then
+  mv 'setuptools/script (dev).tmpl' 'setuptools/script(dev).tmpl'
+fi
+python2.7 setup.py build
 
 %install
-   python2.7 setup.py install --prefix=/usr/local --single-version-externally-managed -O1 --root=$RPM_BUILD_ROOT --record=INSTALLED_FILES
-sed --in-place '/.pyc/d' INSTALLED_FILES
+python2.7 setup.py install --prefix=/usr/local --single-version-externally-managed -O1 --root=$RPM_BUILD_ROOT --record=INSTALLED_FILES
+sed --in-place '/\.py
+
+%preun
+find /usr/local -type f -name '*pyc' -exec rm {} +
+c/d' INSTALLED_FILES
 
 %clean
-   rm -fr $RPM_BUILD_ROOT
+rm -fr $RPM_BUILD_ROOT
 
 %files -f INSTALLED_FILES
 %defattr(-,root,root)

@@ -36,7 +36,10 @@ python2.7 setup.py build
 %install
 export PATH=/usr/pgsql-9.3/bin:$PATH
 python2.7 setup.py install --prefix=/usr/local --root=$RPM_BUILD_ROOT --record=INSTALLED_FILES
-sed --in-place '/.pyc/d' INSTALLED_FILES
+sed --in-place '/\.pyc/d' INSTALLED_FILES
+
+%preun
+find /usr/local -type f -name '*pyc' -exec rm {} +
 
 %clean
 rm -fr $RPM_BUILD_ROOT

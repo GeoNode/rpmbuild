@@ -17,7 +17,7 @@ wget https://pypi.python.org/packages/source/c/celery/celery-3.1.17.tar.gz
 wget https://pypi.python.org/packages/source/D/Django/Django-1.6.11.tar.gz
 wget https://pypi.python.org/packages/source/d/django-activity-stream/django-activity-stream-0.4.5beta1.tar.gz
 wget https://pypi.python.org/packages/source/d/django-appconf/django-appconf-0.5.tar.gz
-wget https://pypi.python.org/packages/source/d/django-autocomplete-light/django-autocomplete-light-1.4.14.tar.gz
+wget https://pypi.python.org/packages/source/d/django-autocomplete-light/django-autocomplete-light-2.2.10.tar.gz
 wget https://pypi.python.org/packages/source/d/django-bootstrap3-datetimepicker/django-bootstrap3-datetimepicker-2.2.3.tar.gz
 wget https://pypi.python.org/packages/source/d/django-celery/django-celery-3.1.16.tar.gz
 wget https://pypi.python.org/packages/source/d/django-downloadview/django-downloadview-1.2.zip
