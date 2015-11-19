@@ -1,5 +1,5 @@
 %define name python27-gsconfig
-%define version 1.0.0
+%define version 1.0.3
 %define realname gsconfig
 %define release 1%{?dist}
 
@@ -40,5 +40,8 @@ rm -fr $RPM_BUILD_ROOT
 %defattr(-,root,root)
 
 %changelog
+* Thu Nov 19 2015 Daniel Berry <dberry@boundlessgeo.com> 1.0.3
+- Update version to 1.0.3
+
 * Tue Nov 17 2015 Daniel Berry <dberry@boundlessgeo.com> 1.0.0
 - Initial configuration for GeoNode 2.4

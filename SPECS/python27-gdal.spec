@@ -1,5 +1,5 @@
 %define name python27-gdal
-%define version 1.11.2
+%define version 1.11.1
 %define realname GDAL
 %define release 1%{?dist}
 
@@ -12,9 +12,9 @@ License: MIT
 Group: Development/Libraries
 Packager: Daniel Berry <dberry@boundlessgeo.com>
 BuildRequires: python27
-BuildRequires: gdal-devel = 1.11.2
+BuildRequires: gdal-devel = 1.11.1
 Requires: python27
-Requires: gdal = 1.11.2
+Requires: gdal = 1.11.1
 Requires: python27-numpy
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Prefix: %{_prefix}
@@ -42,5 +42,5 @@ rm -fr $RPM_BUILD_ROOT
 %defattr(-,root,root)
 
 %changelog
-* Tue Nov 17 2015 Daniel Berry <dberry@boundlessgeo.com> 1.11.2
+* Tue Nov 17 2015 Daniel Berry <dberry@boundlessgeo.com> 1.11.1
 - Initial configuration for GeoNode 2.4

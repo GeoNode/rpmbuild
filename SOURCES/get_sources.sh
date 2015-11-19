@@ -7,12 +7,6 @@ wget https://www.python.org/ftp/python/2.7.10/Python-2.7.10.tgz
 # setuptools source
 wget https://pypi.python.org/packages/source/s/setuptools/setuptools-18.0.1.tar.gz
 ##########
-##########
-# gdal source
-wget http://download.osgeo.org/gdal/1.11.2/gdal-1.11.2.tar.gz
-wget https://github.com/google/libkml/archive/release-1.2.tar.gz
-wget http://downloads.sourceforge.net/openjpeg.mirror/openjpeg-2.1.0.tar.gz
-##########
 # python source dependencies
 wget https://pypi.python.org/packages/source/a/amqp/amqp-1.4.6.tar.gz
 wget https://pypi.python.org/packages/source/a/anyjson/anyjson-0.3.3.tar.gz
@@ -43,9 +37,9 @@ wget https://pypi.python.org/packages/source/d/django_polymorphic/django_polymor
 wget https://pypi.python.org/packages/source/d/django-taggit/django-taggit-0.12.tar.gz
 wget https://pypi.python.org/packages/source/d/django-tastypie/django-tastypie-0.11.0.tar.gz
 wget https://pypi.python.org/packages/source/f/flake8/flake8-2.3.0.tar.gz
-wget https://pypi.python.org/packages/source/G/GDAL/GDAL-1.11.2.tar.gz
+wget https://pypi.python.org/packages/source/G/GDAL/GDAL-1.11.1.tar.gz
 wget https://pypi.python.org/packages/source/g/geolinks/geolinks-0.0.1.tar.gz
-wget https://pypi.python.org/packages/source/G/GeoNode/GeoNode-2.4c2.tar.gz
+wget https://pypi.python.org/packages/source/G/GeoNode/GeoNode-2.4c4.tar.gz
 wget https://pypi.python.org/packages/source/g/geonode-agon-ratings/geonode-agon-ratings-0.3.1.tar.gz
 wget https://pypi.python.org/packages/source/g/geonode-announcements/geonode-announcements-1.0.5.tar.gz
 wget https://pypi.python.org/packages/source/g/geonode-arcrest/geonode-arcrest-10.2.tar.gz
@@ -55,7 +49,7 @@ wget https://pypi.python.org/packages/source/g/geonode-notification/geonode-noti
 wget https://pypi.python.org/packages/source/g/geonode-user-accounts/geonode-user-accounts-1.0.10.tar.gz
 wget https://pypi.python.org/packages/source/g/geonode-user-messages/geonode-user-messages-0.1.2.tar.gz
 wget https://pypi.python.org/packages/source/g/gisdata/gisdata-0.5.4.tar.gz
-wget https://pypi.python.org/packages/source/g/gsconfig/gsconfig-1.0.0.tar.gz
+wget https://pypi.python.org/packages/source/g/gsconfig/gsconfig-1.0.3.tar.gz
 wget https://pypi.python.org/packages/source/g/gsimporter/gsimporter-1.0.0.tar.gz
 wget https://pypi.python.org/packages/source/h/httplib2/httplib2-0.8.tar.gz
 wget https://pypi.python.org/packages/source/k/kombu/kombu-3.0.26.tar.gz

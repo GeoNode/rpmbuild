@@ -24,7 +24,7 @@ Requires(pre):    /usr/bin/getent
 Requires(pre):    bash
 Requires(postun): /usr/sbin/userdel
 Requires(postun): bash
-Requires:         gdal = 1.11.2
+Requires:         gdal = 1.11.1
 Requires:         geonode-geoserver = 2.7
 Requires:         git
 Requires:         httpd
@@ -63,8 +63,8 @@ Requires:         python27-django-taggit = 0.12
 Requires:         python27-django-tastypie = 0.11.0
 Requires:         python27-django = 1.6.11
 Requires:         python27-flake8 = 2.3.0
-Requires:         python27-gdal = 1.11.2
-Requires:         python27-geonode = 2.4c2
+Requires:         python27-gdal = 1.11.1
+Requires:         python27-geonode = 2.4c4
 Requires:         python27-geolinks = 0.0.1
 Requires:         python27-geonode-agon-ratings = 0.3.1
 Requires:         python27-geonode-announcements = 1.0.5
@@ -75,7 +75,7 @@ Requires:         python27-geonode-notification = 1.1.1
 Requires:         python27-geonode-user-accounts = 1.0.10
 Requires:         python27-geonode-user-messages = 0.1.2
 Requires:         python27-gisdata = 0.5.4
-Requires:         python27-gsconfig = 1.0.0
+Requires:         python27-gsconfig = 1.0.3
 Requires:         python27-gsimporter = 1.0.0
 Requires:         python27-httplib2 = 0.8
 Requires:         python27-kombu = 3.0.26
