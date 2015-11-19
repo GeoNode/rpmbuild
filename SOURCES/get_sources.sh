@@ -39,7 +39,7 @@ wget https://pypi.python.org/packages/source/d/django-tastypie/django-tastypie-0
 wget https://pypi.python.org/packages/source/f/flake8/flake8-2.3.0.tar.gz
 wget https://pypi.python.org/packages/source/G/GDAL/GDAL-1.11.1.tar.gz
 wget https://pypi.python.org/packages/source/g/geolinks/geolinks-0.0.1.tar.gz
-wget https://pypi.python.org/packages/source/G/GeoNode/GeoNode-2.4c4.tar.gz
+wget https://pypi.python.org/packages/source/G/GeoNode/GeoNode-2.4.tar.gz
 wget https://pypi.python.org/packages/source/g/geonode-agon-ratings/geonode-agon-ratings-0.3.1.tar.gz
 wget https://pypi.python.org/packages/source/g/geonode-announcements/geonode-announcements-1.0.5.tar.gz
 wget https://pypi.python.org/packages/source/g/geonode-arcrest/geonode-arcrest-10.2.tar.gz

@@ -1,5 +1,5 @@
 %define name python27-geonode
-%define version 2.4c4
+%define version 2.4
 %define realname GeoNode
 %define release 1%{?dist}
 
@@ -40,8 +40,8 @@ rm -fr $RPM_BUILD_ROOT
 %defattr(-,root,root)
 
 %changelog
-* Thu Nov 19 2015 Daniel Berry <dberry@boundlessgeo.com> 2.4c4
-- Update version to 2.4c4
+* Thu Nov 19 2015 Daniel Berry <dberry@boundlessgeo.com> 2.4
+- Update version to 2.4 Final
 
 * Tue Nov 17 2015 Daniel Berry <dberry@boundlessgeo.com> 2.4c2
 - Initial configuration for GeoNode 2.4
