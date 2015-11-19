@@ -2,6 +2,7 @@
 %define version 1.9.2
 %define realname numpy
 %define release 1%{?dist}
+%define debug_package %{nil}
 
 Summary: NumPy: array processing for numbers, strings, records, and objects.
 Name: %{name}

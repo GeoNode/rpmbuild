@@ -2,6 +2,7 @@
 %define version 2.9.0
 %define realname Pillow
 %define release 1%{?dist}
+%define debug_package %{nil}
 
 Summary: Python Imaging Library (Fork)
 Name: %{name}
@@ -15,6 +16,8 @@ BuildRequires: python27
 BuildRequires: libjpeg-devel
 Requires: python27
 Requires: libjpeg
+Requires:         liblcms2-2
+Requires:         libopenjp2-7
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Prefix: %{_prefix}
 

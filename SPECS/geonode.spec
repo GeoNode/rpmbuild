@@ -4,6 +4,7 @@
 %define release 0.1%{?dist}
 %define _unpackaged_files_terminate_build 0
 %define __os_install_post %{nil}
+%define debug_package %{nil}
 
 Name:             %{name}
 Version:          %{version}

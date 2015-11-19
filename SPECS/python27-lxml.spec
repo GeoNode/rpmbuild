@@ -2,6 +2,7 @@
 %define version 3.4.4
 %define realname lxml
 %define release 1%{?dist}
+%define debug_package %{nil}
 
 Summary: MPowerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API.
 Name: %{name}

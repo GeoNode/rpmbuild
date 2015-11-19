@@ -2,6 +2,7 @@
 %define version 2.0.11.1
 %define realname uwsgi
 %define release 1%{?dist}
+%define debug_package %{nil}
 
 Summary: The uWSGI server
 Name: %{name}
@@ -17,7 +18,6 @@ BuildRequires: gcc-c++
 Requires: python27
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Prefix: %{_prefix}
-BuildArch: noarch
 
 %description
 The uWSGI server
@@ -40,6 +40,8 @@ rm -fr $RPM_BUILD_ROOT
 
 %files -f INSTALLED_FILES
 %defattr(-,root,root)
+/usr/local/bin/uwsgi
+/usr/local/lib/python2.7/site-packages/uwsgidecorators.pyo
 
 %changelog
 * Tue Nov 17 2015 Daniel Berry <dberry@boundlessgeo.com> 2.0.11.1

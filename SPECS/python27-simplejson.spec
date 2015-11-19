@@ -2,6 +2,7 @@
 %define version 3.7.3
 %define realname simplejson
 %define release 1%{?dist}
+%define debug_package %{nil}
 
 Summary: Simple, fast, extensible JSON encoder/decoder for Python
 Name: %{name}

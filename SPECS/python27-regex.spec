@@ -2,6 +2,7 @@
 %define version 2015.07.12
 %define realname regex
 %define release 1%{?dist}
+%define debug_package %{nil}
 
 Summary: Alternative regular expression module, to replace re.
 Name: %{name}

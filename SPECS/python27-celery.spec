@@ -2,6 +2,7 @@
 %define version 3.1.17
 %define realname celery
 %define release 1%{?dist}
+%define debug_package %{nil}
 
 Summary: Distributed Task Queue
 Name: %{name}

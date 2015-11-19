@@ -2,6 +2,7 @@
 %define version 1.3.1
 %define realname Shapely
 %define release 1%{?dist}
+%define debug_package %{nil}
 
 Summary: Geometric objects, predicates, and operations
 Name: %{name}

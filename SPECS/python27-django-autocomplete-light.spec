@@ -1,5 +1,5 @@
 %define name python27-django-autocomplete-light
-%define version 1.4.14
+%define version 2.2.10
 %define realname django-autocomplete-light
 %define release 1%{?dist}
 

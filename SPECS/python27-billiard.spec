@@ -2,6 +2,7 @@
 %define version 3.3.0.20
 %define realname billiard
 %define release 1%{?dist}
+%define debug_package %{nil}
 
 Summary: Python multiprocessing fork with improvements and bugfixes
 Name: %{name}

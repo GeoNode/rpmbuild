@@ -2,6 +2,7 @@
 %define version 2.6.1
 %define realname psycopg2
 %define release 1%{?dist}
+%define debug_package %{nil}
 
 Summary: psycopg2 - Python-PostgreSQL Database Adapter
 Name: %{name}

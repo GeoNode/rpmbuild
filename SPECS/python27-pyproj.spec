@@ -2,6 +2,7 @@
 %define version 1.9.3
 %define realname pyproj
 %define release 1%{?dist}
+%define debug_package %{nil}
 
 Summary: Python interface to PROJ.4 library
 Name: %{name}

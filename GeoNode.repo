@@ -10,7 +10,12 @@ baseurl=http://yum.geonode.org.s3-website-us-east-1.amazonaws.com/repo/el6/x86_6
 enabled=1
 gpgcheck=0
 
-[OpenGeo-base]
+[geonode-external]
+name=GeoNode external dependencies
+baseurl=http://yum.geonode.org.s3-website-us-east-1.amazonaws.com/repo/el6/external
+enabled=1
+gpgcheck=0
+
 [opengeo]
 name=opengeo
 baseurl=http://yum.boundlessgeo.com/suite/v46/centos/6/x86_64

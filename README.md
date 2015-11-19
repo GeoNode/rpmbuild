@@ -6,17 +6,11 @@ __as a non-root user with sudo access on an EL6 Operating System...__
 ```bash
 cd ~
 sudo yum -y install rpmdevtools
-sudo yum -y install http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
-sudo yum -y install http://yum.postgresql.org/9.3/redhat/rhel-6-x86_64/pgdg-centos93-9.3-2.noarch.rpm
+sudo cp ~/rpmbuild/GeoNode.repo /etc/yum.repos.d
 sudo yum -y update
-sudo yum -y install proj-devel postgresql93-devel libxslt-devel pcre-devel gcc gcc-c++ bzip2-devel db4-devel expat-devel gdbm-devel ncurses-devel openssl-devel readline-devel sqlite-devel tk-devel tcl-devel unzip wget libjpeg-devel
+sudo yum -y install proj-devel gdal-devel postgresql93-devel libxslt-devel pcre-devel gcc gcc-c++ bzip2-devel db4-devel expat-devel gdbm-devel ncurses-devel openssl-devel readline-devel sqlite-devel tk-devel tcl-devel unzip wget libjpeg-devel
 QA_RPATHS=$[ 0x0001|0x0010 ] rpmbuild -bb ~/rpmbuild/SPECS/python27.spec
 QA_RPATHS=$[ 0x0001|0x0010 ] rpmbuild -bb ~/rpmbuild/SPECS/python27-setuptools.spec
-sudo yum -y install ~/rpmbuild/RPMS/*.rpm
-QA_RPATHS=$[ 0x0001|0x0010 ] rpmbuild -bb ~/rpmbuild/SPECS/libkml.spec
-QA_RPATHS=$[ 0x0001|0x0010 ] rpmbuild -bb ~/rpmbuild/SPECS/openjpeg2.spec
-sudo yum -y install ~/rpmbuild/RPMS/*.rpm
-QA_RPATHS=$[ 0x0001|0x0010 ] rpmbuild -bb ~/rpmbuild/SPECS/gdal.spec
 sudo yum -y install ~/rpmbuild/RPMS/*.rpm
 QA_RPATHS=$[ 0x0001|0x0010 ] rpmbuild -bb ~/rpmbuild/SPECS/python27-amqp.spec
 QA_RPATHS=$[ 0x0001|0x0010 ] rpmbuild -bb ~/rpmbuild/SPECS/python27-anyjson.spec
@@ -50,6 +44,7 @@ QA_RPATHS=$[ 0x0001|0x0010 ] rpmbuild -bb ~/rpmbuild/SPECS/python27-django.spec
 QA_RPATHS=$[ 0x0001|0x0010 ] rpmbuild -bb ~/rpmbuild/SPECS/python27-flake8.spec
 QA_RPATHS=$[ 0x0001|0x0010 ] rpmbuild -bb ~/rpmbuild/SPECS/python27-gdal.spec
 QA_RPATHS=$[ 0x0001|0x0010 ] rpmbuild -bb ~/rpmbuild/SPECS/python27-geolinks.spec
+QA_RPATHS=$[ 0x0001|0x0010 ] rpmbuild -bb ~/rpmbuild/SPECS/python27-geonode.spec
 QA_RPATHS=$[ 0x0001|0x0010 ] rpmbuild -bb ~/rpmbuild/SPECS/python27-geonode-agon-ratings.spec
 QA_RPATHS=$[ 0x0001|0x0010 ] rpmbuild -bb ~/rpmbuild/SPECS/python27-geonode-announcements.spec
 QA_RPATHS=$[ 0x0001|0x0010 ] rpmbuild -bb ~/rpmbuild/SPECS/python27-geonode-arcrest.spec
@@ -57,7 +52,7 @@ QA_RPATHS=$[ 0x0001|0x0010 ] rpmbuild -bb ~/rpmbuild/SPECS/python27-geonode-avat
 QA_RPATHS=$[ 0x0001|0x0010 ] rpmbuild -bb ~/rpmbuild/SPECS/python27-geonode-dialogos.spec
 QA_RPATHS=$[ 0x0001|0x0010 ] rpmbuild -bb ~/rpmbuild/SPECS/python27-geonode-notification.spec
 QA_RPATHS=$[ 0x0001|0x0010 ] rpmbuild -bb ~/rpmbuild/SPECS/python27-geonode-user-accounts.spec
-QA_RPATHS=$[ 0x0001|0x0010 ] rpmbuild -bb ~/rpmbuild/SPECS/python27-QA_RPATHS=$[ 0x0001|0x0010 ] rpmbuild -bb ~/rpmbuild/SPECS/geonode-user-messages.spec
+QA_RPATHS=$[ 0x0001|0x0010 ] rpmbuild -bb ~/rpmbuild/SPECS/geonode-user-messages.spec
 QA_RPATHS=$[ 0x0001|0x0010 ] rpmbuild -bb ~/rpmbuild/SPECS/python27-gisdata.spec
 QA_RPATHS=$[ 0x0001|0x0010 ] rpmbuild -bb ~/rpmbuild/SPECS/python27-gsconfig.spec
 QA_RPATHS=$[ 0x0001|0x0010 ] rpmbuild -bb ~/rpmbuild/SPECS/python27-gsimporter.spec

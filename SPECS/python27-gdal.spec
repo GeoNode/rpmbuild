@@ -2,6 +2,7 @@
 %define version 1.11.1
 %define realname GDAL
 %define release 1%{?dist}
+%define debug_package %{nil}
 
 Summary: GDAL: Geospatial Data Abstraction Library
 Name: %{name}
