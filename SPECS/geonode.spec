@@ -25,7 +25,7 @@ Requires(pre):    bash
 Requires(postun): /usr/sbin/userdel
 Requires(postun): bash
 Requires:         gdal = 1.11.2
-Requires:         geonode-geoserver = 1.11.2
+Requires:         geonode-geoserver = 2.7
 Requires:         git
 Requires:         httpd
 Requires:         postgresql93

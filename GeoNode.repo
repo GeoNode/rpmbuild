@@ -1,0 +1,11 @@
+[geonode-noarch]
+name=GeoNode noarch Repository
+baseurl=http://yum.geonode.org.s3-website-us-east-1.amazonaws.com/repo/el6/noarch
+enabled=1
+gpgcheck=0
+
+[geonode-x86_64]
+name=GeoNode 64bit Repository
+baseurl=http://yum.geonode.org.s3-website-us-east-1.amazonaws.com/repo/el6/x86_64
+enabled=1
+gpgcheck=0

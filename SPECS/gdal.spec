@@ -8,7 +8,7 @@ URL: http://www.gdal.org/
 
 %define _unpackaged_files_terminate_build 0
 %define debug_package %{nil}
-Source0: wget http://download.osgeo.org/gdal/%{version}/gdal-%{version}.tar.gz
+Source0: http://download.osgeo.org/gdal/%{version}/gdal-%{version}.tar.gz
 Packager: Daniel Berry <dberry@boundlessgeo.com>
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: gcc

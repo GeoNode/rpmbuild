@@ -10,6 +10,8 @@ wget https://pypi.python.org/packages/source/s/setuptools/setuptools-18.0.1.tar.
 ##########
 # gdal source
 wget http://download.osgeo.org/gdal/1.11.2/gdal-1.11.2.tar.gz
+wget https://github.com/google/libkml/archive/release-1.2.tar.gz
+wget http://downloads.sourceforge.net/openjpeg.mirror/openjpeg-2.1.0.tar.gz
 ##########
 # python source dependencies
 wget https://pypi.python.org/packages/source/a/amqp/amqp-1.4.6.tar.gz
