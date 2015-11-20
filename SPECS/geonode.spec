@@ -17,9 +17,9 @@ Source1:          supervisord.conf
 Source2:          geonode.init
 Source3:          geonode.conf
 Source4:          proxy.conf
-Source5:          README
-Source6:          local_settings.py
-Source7:          robots.txt
+Source5:          local_settings.py
+Source6:          robots.txt
+Source7:          geonode-config
 Requires(pre):    /usr/sbin/useradd
 Requires(pre):    /usr/bin/getent
 Requires(pre):    bash
@@ -127,6 +127,7 @@ unzip %{SOURCE0} -d $LIB
 pushd $LIB
 mv %{name}-project-master %{name}
 pushd %{name}
+mkdir -p $LIB/%{name}/{media,uploads}
 mv project_name sdi
 popd && popd
 sed -i "s/{{ project_name }}/sdi/g" $LIB/%{name}/manage.py
@@ -155,16 +156,20 @@ install -m 644 %{SOURCE4} $HTTPD_CONFD/proxy.conf
 # setup geonode configuration directory
 GEONODE_CONF=$RPM_BUILD_ROOT%{_sysconfdir}/%{name}
 mkdir -p $GEONODE_CONF
-install -m 755 %{SOURCE5} $GEONODE_CONF/README
 
 # additions to geonode directory
 # local_settings.py
-install -m 755 %{SOURCE6} $LIB/%{name}/sdi/local_settings.py
+install -m 755 %{SOURCE5} $LIB/%{name}/sdi/local_settings.py
 # robots.txt
-install -m 755 %{SOURCE7} $LIB/%{name}/sdi/templates/robots.txt
+install -m 755 %{SOURCE6} $LIB/%{name}/sdi/templates/robots.txt
 # add robots.txt as a TemplateView in django original file is urls.py.bak
 sed -i "s|urlpatterns = patterns('',|urlpatterns = patterns('',\\n\
 url(r'^/robots\\\.txt$', TemplateView.as_view(template_name='robots.txt', content_type='text/plain')),|" $LIB/%{name}/sdi/urls.py
+
+# geonode-config command
+LOCAL_BIN=$RPM_BUILD_ROOT%{_prefix}/local/bin
+mkdir -p $LOCAL_BIN
+install -m 755 %{SOURCE7} $LOCAL_BIN/
 
 %pre
 getent group %{name} >/dev/null || groupadd -r %{name}
@@ -172,19 +177,7 @@ getent passwd %{name} >/dev/null || useradd -r -d %{_localstatedir}/lib/geonode 
 
 %post
 if [ $1 -eq 1 ] ; then
-  /sbin/chkconfig --add %{name}
   ln -s %{_localstatedir}/lib/%{name}/sdi/local_settings.py %{_sysconfdir}/%{name}/local_settings.py
-  echo ""
-  echo " GeoNode Version - %{version}-%{release} "
-  echo ""
-  echo "     -------------------------------     "
-  echo "              Important!!!               "
-  echo "                                         "
-  echo "      Reference /etc/geonode/README      "
-  echo "         for post configuration          "
-  echo "     -------------------------------     "
-  echo ""
-  echo ""
 fi
 
 %preun
@@ -212,17 +205,20 @@ fi
 %{_localstatedir}/lib/%{name}/sdi/urls.py
 %{_localstatedir}/lib/%{name}/sdi/wsgi.py
 %config(noreplace) %{_localstatedir}/lib/%{name}/sdi/local_settings.py
+%defattr(775,%{name},%{name},775)
+%dir %{_localstatedir}/lib/%{name}/media
+%dir %{_localstatedir}/lib/%{name}/uploads
 %defattr(744,%{name},%{name},744)
 %dir %{_localstatedir}/log/%{name}
 %defattr(644,%{name},%{name},644)
 %dir %{_sysconfdir}/%{name}/
-%{_sysconfdir}/%{name}/README
 %defattr(644,apache,apache,644)
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/%{name}.conf
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/proxy.conf
 %defattr(-,root,root,-)
 %config(noreplace) %{_sysconfdir}/supervisord.conf
 %defattr(-,root,root,-)
+%{_prefix}/local/bin/geonode-config
 %config %{_sysconfdir}/init.d/%{name}
 
 %changelog

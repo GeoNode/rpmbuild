@@ -1,42 +1,53 @@
+# -*- coding: utf-8 -*-
 import os
+import geonode
 
-SITEURL = "http://localhost/"
+# Setting debug to true makes Django serve static media and
+# present pretty error pages.
+DEBUG = TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = ['localhost']
+# Set to True to load non-minified versions of (static) client dependencies
+# Requires to set-up Node and tools that are required for static development
+# otherwise it will raise errors for the missing non-minified dependencies
+DEBUG_STATIC = False
+
+SITENAME = 'GeoNode'
+SITEURL = 'http://localhost/'
+
+DATABASE_ENGINE = 'postgresql_psycopg2'
+DATABASE_NAME = 'geonode'
+DATABASE_USER = 'geonode'
+DATABASE_PASSWORD = 'geonode'
+DATABASE_HOST = 'localhost'
+DATABASE_PORT = '5432'
 
 DATABASES = {
     'default': {
-         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-         'NAME': 'geonode',
-         'USER': 'geonode',
-         'PASSWORD': 'geonode',
-     },
-    # vector datastore for uploads
-    'datastore' : {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': DATABASE_NAME,
+        'USER': DATABASE_USER,
+        'PASSWORD': DATABASE_PASSWORD,
+        'HOST': DATABASE_HOST,
+        'PORT': DATABASE_PORT,
+    },
+    'datastore': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        #'ENGINE': '', # Empty ENGINE name disables 
         'NAME': 'geonode_data',
-        'USER' : 'geonode',
-        'PASSWORD' : 'geonode',
-        'HOST' : 'localhost',
-        'PORT' : '5432',
+        'USER': DATABASE_USER,
+        'PASSWORD': DATABASE_PASSWORD,
+        'HOST': DATABASE_HOST,
+        'PORT': DATABASE_PORT,
     }
 }
 
-UPLOADER = {
-    'BACKEND' : 'geonode.rest',
-    'OPTIONS' : {
-        'TIME_ENABLED': False,
-        'GEOGIG_ENABLED': False,
-    }
-}
+GEOSERVER_URL = SITEURL + 'geoserver/'
 
 # OGC (WMS/WFS/WCS) Server Settings
 OGC_SERVER = {
     'default' : {
         'BACKEND' : 'geonode.geoserver',
-        'LOCATION' : 'http://localhost:8080/geoserver/',
-        'PUBLIC_LOCATION' : 'http://localhost/geoserver/',
+        'LOCATION' : 'http://localhost/geoserver/',
+        'PUBLIC_LOCATION' : GEOSERVER_URL,
         'USER' : 'admin',
         'PASSWORD' : 'geoserver',
         'MAPFISH_PRINT_ENABLED' : True,
@@ -45,35 +56,71 @@ OGC_SERVER = {
         'GEOGIG_ENABLED' : False,
         'WMST_ENABLED' : False,
         'BACKEND_WRITE_ENABLED': True,
-        'WPS_ENABLED' : False,
-        #'LOG_FILE': '%s/geoserver/data/logs/geoserver.log' % os.path.abspath(os.path.join(PROJECT_ROOT, os.pardir)),
+        'WPS_ENABLED' : True,
+        'LOG_FILE':'/var/lib/geoserver/logs/geoserver.log',
         # Set to name of database in DATABASES dictionary to enable
-        'DATASTORE': 'datastore', #'datastore',
+        'DATASTORE': 'datastore',
     }
 }
+
+LANGUAGE_CODE = 'en'
+
+MEDIA_ROOT = '/var/lib/geonode/uploaded'
+STATIC_ROOT = '/var/lib/geonode/static/'
+
+# secret key used in hashing, should be a long, unique string for each
+# site.  See http://docs.djangoproject.com/en/1.2/ref/settings/#secret-key
+SECRET_KEY = 'THE_SECRET_KEY'
+
 
 CATALOGUE = {
     'default': {
-        # The underlying CSW implementation
-        # default is pycsw in local mode (tied directly to GeoNode Django DB)
+        # The underlying CSW backend
+        # ("pycsw_http", "pycsw_local", "geonetwork", "deegree")
         'ENGINE': 'geonode.catalogue.backends.pycsw_local',
-        # pycsw in non-local mode
-        # 'ENGINE': 'geonode.catalogue.backends.pycsw_http',
-        # GeoNetwork opensource
-        # 'ENGINE': 'geonode.catalogue.backends.geonetwork',
-        # deegree and others
-        # 'ENGINE': 'geonode.catalogue.backends.generic',
-
         # The FULLY QUALIFIED base url to the CSW instance for this GeoNode
         'URL': '%scatalogue/csw' % SITEURL,
-        # 'URL': 'http://localhost:8080/geonetwork/srv/en/csw',
-        # 'URL': 'http://localhost:8080/deegree-csw-demo-3.0.4/services',
-
-        # login credentials (for GeoNetwork)
-        'USER': 'admin',
-        'PASSWORD': 'admin',
     }
 }
 
-# Default preview library
+# A Google Maps API key is needed for the 3D Google Earth view of maps
+# See http://code.google.com/apis/maps/signup.html
+GOOGLE_API_KEY = ''
+
+GEONODE_ROOT = os.path.dirname(geonode.__file__)
+
+TEMPLATE_DIRS = (
+    '/var/lib/geonode/sdi/templates',
+    os.path.join(GEONODE_ROOT, 'templates'),
+)
+
+# Additional directories which hold static files
+STATICFILES_DIRS = [
+    '/var/lib/geonode/media',
+    os.path.join(GEONODE_ROOT, 'static'),
+]
+
+#REGISTRATION_OPEN = False
+#ACCOUNT_APPROVAL_REQUIRED = False
+
+#ACCOUNT_EMAIL_CONFIRMATION_EMAIL = False
+#ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = False
+
+# Allowed values for the preview library are 'geoext' and 'leaflet'.
 #LAYER_PREVIEW_LIBRARY = 'geoext'
+
+# Uncomment the following to receive emails whenever there are errors in GeoNode
+# or to be notified of new user requests when ACCOUNT_APPROVAL_REQUIRED has been set.
+#ADMINS = (
+#            ('John', 'john@example.com'),
+#         )
+
+# Uncomment the following to use a Gmail account as the email backend
+#EMAIL_USE_TLS = True
+#EMAIL_HOST = 'smtp.gmail.com'
+#EMAIL_HOST_USER = 'youremail@gmail.com'
+#EMAIL_HOST_PASSWORD = 'yourpassword'
+#EMAIL_PORT = 587
+
+# For more information on available settings please consult the Django docs at
+# https://docs.djangoproject.com/en/dev/ref/settings
