@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#Need to add usage
 if [ "$EUID" -ne 0 ]
   then echo "geonode-config requires sudo user access"
   exit
@@ -98,71 +98,76 @@ createsuperuser()
 updateip()
 {
   NEWIP="$VAR"
-
-  # Replace SITEURL in $GEONODE_ETC/local_settings.py
-  echo "Replacing SITEURL value with '$NEWIP' in $GEONODE_ETC/local_settings.py ... " | tr -d '\n'
-  sed -i "s@\(SITEURL[  ]*=[  ]*\).*@\1\'http://$NEWIP\/'@g" $GEONODE_ETC/local_settings.py
-  echo "done."
-
-  echo "Adding entry for '$NEWIP' in $GEOSERVER_DATA_DIR/printing/config.yaml ... " | tr -d '\n'
-  printing_config=$GEOSERVER_DATA_DIR/printing/config.yaml
-
-  if grep -q "$NEWIP" "$printing_config"
+  if [ -z "$NEWIP" ];
   then
-      echo "'$NEWIP' already found to the printing whitelist."
+    echo "you need to declare the ip or domain name"
+    echo "example: geonode-config all example.com"
   else
-      sed -i "s#hosts:#hosts:\n  - !ipMatch\n    ip: $NEWIP#g" $printing_config
-      echo "done."
-  fi
+    # Replace SITEURL in $GEONODE_ETC/local_settings.py
+    echo "Replacing SITEURL value with '$NEWIP' in $GEONODE_ETC/local_settings.py ... " | tr -d '\n'
+    sed -i "s@\(SITEURL[  ]*=[  ]*\).*@\1\'http://$NEWIP\/'@g" $GEONODE_ETC/local_settings.py
+    echo "done."
 
-  # if ALLOWED_HOSTS already exists ...
-  if grep -q "^[  ]*ALLOWED_HOSTS[  ]*=" "$GEONODE_ETC/local_settings.py"
-  then
-      if [ $IS_REPLACE -eq 1 ]
-      then
-          echo "Replacing ALLOWED_HOSTS in $GEONODE_ETC/local_settings.py ... " | tr -d '\n'
-          sed -i "s/^\([  ]*ALLOWED_HOSTS[  ]*=\).*/\1 [ 'localhost', '$NEWIP', ]/g" "$GEONODE_ETC/local_settings.py"
-          echo "done."
-      else
-          echo "Adding $NEWIP to ALLOWED_HOSTS in $GEONODE_ETC/local_settings.py ... " | tr -d '\n'
-          items="$(grep "^[   ]*ALLOWED_HOSTS[  ]*=" "$GEONODE_ETC/local_settings.py" | \
-                   sed 's/^[  ]*ALLOWED_HOSTS[  ]*=[  ]*\[//g;s/\][   ]*$//g')"
-          already_found=0
-          oldifs="$IFS"
-          IFS=','
-          for item in $items
-          do
-              item_cls="$(echo "$item" | sed "s/^[  ]*['\"]//g;s/['\"][   ]*$//g")"
-              if [ "$item_cls" = "$NEWIP" ]
-              then
-                  already_found=1
-                  break
-              fi
-          done
-          IFS="$oldifs"
-          if [ $already_found -eq 0 ]
-          then
-              if echo "$items" | grep -q ',[  ]*$'
-              then
-                  items="${items}'$NEWIP', "
-              else
-                  items="${items}, '$NEWIP', "
-              fi
-              sed -i "s/^\([  ]*ALLOWED_HOSTS[  ]*=\).*/\1 [ $items ]/g" "$GEONODE_ETC/local_settings.py"
-              echo "done."
-          else
-              echo "'$NEWIP' already found in ALLOWED_HOSTS list."
-          fi
-      fi
-  else
-      echo "Adding ALLOWED_HOSTS with in $GEONODE_ETC/local_settings.py ... " | tr -d '\n'
-      echo "ALLOWED_HOSTS=['localhost', '$NEWIP', ]" >> $GEONODE_ETC/local_settings.py
-      echo "done."
+    echo "Adding entry for '$NEWIP' in $GEOSERVER_DATA_DIR/printing/config.yaml ... " | tr -d '\n'
+    printing_config=$GEOSERVER_DATA_DIR/printing/config.yaml
+
+    if grep -q "$NEWIP" "$printing_config"
+    then
+        echo "'$NEWIP' already found to the printing whitelist."
+    else
+        sed -i "s#hosts:#hosts:\n  - !ipMatch\n    ip: $NEWIP#g" $printing_config
+        echo "done."
+    fi
+
+    # if ALLOWED_HOSTS already exists ...
+    if grep -q "^[  ]*ALLOWED_HOSTS[  ]*=" "$GEONODE_ETC/local_settings.py"
+    then
+        if [ $IS_REPLACE -eq 1 ]
+        then
+            echo "Replacing ALLOWED_HOSTS in $GEONODE_ETC/local_settings.py ... " | tr -d '\n'
+            sed -i "s/^\([  ]*ALLOWED_HOSTS[  ]*=\).*/\1 [ 'localhost', '$NEWIP', ]/g" "$GEONODE_ETC/local_settings.py"
+            echo "done."
+        else
+            echo "Adding $NEWIP to ALLOWED_HOSTS in $GEONODE_ETC/local_settings.py ... " | tr -d '\n'
+            items="$(grep "^[   ]*ALLOWED_HOSTS[  ]*=" "$GEONODE_ETC/local_settings.py" | \
+                     sed 's/^[  ]*ALLOWED_HOSTS[  ]*=[  ]*\[//g;s/\][   ]*$//g')"
+            already_found=0
+            oldifs="$IFS"
+            IFS=','
+            for item in $items
+            do
+                item_cls="$(echo "$item" | sed "s/^[  ]*['\"]//g;s/['\"][   ]*$//g")"
+                if [ "$item_cls" = "$NEWIP" ]
+                then
+                    already_found=1
+                    break
+                fi
+            done
+            IFS="$oldifs"
+            if [ $already_found -eq 0 ]
+            then
+                if echo "$items" | grep -q ',[  ]*$'
+                then
+                    items="${items}'$NEWIP', "
+                else
+                    items="${items}, '$NEWIP', "
+                fi
+                sed -i "s/^\([  ]*ALLOWED_HOSTS[  ]*=\).*/\1 [ $items ]/g" "$GEONODE_ETC/local_settings.py"
+                echo "done."
+            else
+                echo "'$NEWIP' already found in ALLOWED_HOSTS list."
+            fi
+        fi
+    else
+        echo "Adding ALLOWED_HOSTS with in $GEONODE_ETC/local_settings.py ... " | tr -d '\n'
+        echo "ALLOWED_HOSTS=['localhost', '$NEWIP', ]" >> $GEONODE_ETC/local_settings.py
+        echo "done."
+    fi
+    python2.7 /var/lib/geonode/manage.py fixsitename
+    service httpd restart
+    python2.7 /var/lib/geonode/manage.py updatelayers
+    python2.7 /var/lib/geonode/manage.py updatemaplayerip
   fi
-  python2.7 /var/lib/geonode/manage.py fixsitename
-  service httpd restart
-  python2.7 /var/lib/geonode/manage.py updatelayers
-  python2.7 /var/lib/geonode/manage.py updatemaplayerip
 }
 
 shell()
@@ -199,15 +204,21 @@ stop_all()
 }
 
 case "$1" in
-    all)
-        database
-        django
-        updateip
-        collectstatic
-        syncdb
-        selinux
-        start_all
-        createsuperuser
+    init)
+        if [ -z "$VAR" ];
+        then
+          echo "you need to declare the ip or domain name"
+          echo "example: geonode-config all example.com"
+        else
+          database
+          django
+          updateip
+          collectstatic
+          syncdb
+          selinux
+          start_all
+          createsuperuser
+        fi
         RETVAL=$?
         ;;
     database)
@@ -261,6 +272,6 @@ case "$1" in
         RETVAL=$?
         ;;
     *)
-        echo $"Usage: $0 {all|database|django|selinux|updateip|syncdb|collectstatic|changepassword|createsuperuser|shell|dbshell|start_all|stop_all}"
+        echo $"Usage: $0 {init|database|django|selinux|updateip|syncdb|collectstatic|changepassword|createsuperuser|shell|dbshell|start_all|stop_all}"
         exit 1
 esac
