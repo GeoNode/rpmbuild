@@ -19,15 +19,17 @@ database()
     chkconfig postgresql-9.3 on
     sed -i.geonode "s/  peer/  trust/g" /var/lib/pgsql/9.3/data/pg_hba.conf
     sed -i.geonode "s/  ident/  md5/g" /var/lib/pgsql/9.3/data/pg_hba.conf
-    sed -i.geonode "s/#listen_addresses = 'localhost'/listen_addresses = '*'/" /var/lib/pgsql/9.3/data/postgresql.conf
     service postgresql-9.3 restart
   fi
   PGUSER=$(psql -U postgres -c '\du' | cut -d \| -f 1 | grep -w geonode | wc -l)
   if [ $PGUSER == 0 ]
   then
-    psql -U postgres -c "CREATE USER geonode WITH PASSWORD 'geonode';"
+    psqlpass=$(cat /dev/urandom | tr -cd "$CHAR" | head -c ${1:-16})
+    sed -i "s@\(DATABASE_PASSWORD[  ]*=[  ]*\).*@\1\'$psqlpass'@g" $GEONODE_ETC/local_settings.py
+    psql -U postgres -c "CREATE USER geonode WITH PASSWORD '$psqlpass';"
   else
     echo "geonode user already created"
+    echo "you may need to manually set the django setting in local_settings.py"
   fi
   GEONODE_DB=$(psql -U postgres -lqt | cut -d \| -f 1 | grep -w geonode | wc -l)
   if [ $GEONODE_DB == 0 ]
@@ -51,13 +53,8 @@ database()
 
 django()
 {
-  if grep -q "THE_SECRET_KEY" "$GEONODE_ETC/local_settings.py"
-  then
-    secretkey=$(cat /dev/urandom | tr -cd "$CHAR" | head -c ${1:-32})
-    sed -i "s/THE_SECRET_KEY/$secretkey/g" $GEONODE_ETC/local_settings.py
-  else
-    echo "django secret key is already configured"
-  fi
+  secretkey=$(cat /dev/urandom | tr -cd "$CHAR" | head -c ${1:-32})
+  sed -i "s@\(SECRET_KEY[  ]*=[  ]*\).*@\1\'$secretkey'@g" $GEONODE_ETC/local_settings.py
 }
 
 selinux()
