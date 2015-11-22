@@ -177,7 +177,7 @@ getent passwd %{name} >/dev/null || useradd -r -d %{_localstatedir}/lib/geonode 
 
 %post
 if [ $1 -eq 1 ] ; then
-  ln -s %{_localstatedir}/lib/%{name}/sdi/local_settings.py %{_sysconfdir}/%{name}/local_settings.py
+  ln -s %{_sysconfdir}/%{name}/local_settings.py %{_localstatedir}/lib/%{name}/sdi/local_settings.py
 fi
 
 %preun
@@ -204,7 +204,7 @@ fi
 %{_localstatedir}/lib/%{name}/sdi/templates/site_index.html
 %{_localstatedir}/lib/%{name}/sdi/urls.py
 %{_localstatedir}/lib/%{name}/sdi/wsgi.py
-%config(noreplace) %{_localstatedir}/lib/%{name}/sdi/local_settings.py
+%config(noreplace) %{_sysconfdir}/%{name}/local_settings.py
 %defattr(775,%{name},%{name},775)
 %dir %{_localstatedir}/lib/%{name}/media
 %dir %{_localstatedir}/lib/%{name}/uploads
