@@ -65,8 +65,8 @@ OGC_SERVER = {
 
 LANGUAGE_CODE = 'en'
 
-MEDIA_ROOT = '/var/lib/geonode/uploaded'
-STATIC_ROOT = '/var/lib/geonode/static/'
+MEDIA_ROOT = '/var/lib/geonode/sdi/uploaded'
+STATIC_ROOT = '/var/lib/geonode/sdi/static/'
 
 # secret key used in hashing, should be a long, unique string for each
 # site.  See http://docs.djangoproject.com/en/1.2/ref/settings/#secret-key
@@ -96,7 +96,7 @@ TEMPLATE_DIRS = (
 
 # Additional directories which hold static files
 STATICFILES_DIRS = [
-    '/var/lib/geonode/media',
+    '/var/lib/geonode/sdi/media',
     os.path.join(GEONODE_ROOT, 'static'),
 ]
 

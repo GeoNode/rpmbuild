@@ -127,8 +127,9 @@ unzip %{SOURCE0} -d $LIB
 pushd $LIB
 mv %{name}-project-master %{name}
 pushd %{name}
-mkdir -p $LIB/%{name}/{media,uploads}
+mkdir -p $LIB/%{name}
 mv project_name sdi
+mkdir -p $LIB/%{name}/sdi/{media,uploaded}
 popd && popd
 sed -i "s/{{ project_name }}/sdi/g" $LIB/%{name}/manage.py
 sed -i "s/{{ project_name }}/sdi/g" $LIB/%{name}/setup.py
@@ -156,10 +157,10 @@ install -m 644 %{SOURCE4} $HTTPD_CONFD/proxy.conf
 # setup geonode configuration directory
 GEONODE_CONF=$RPM_BUILD_ROOT%{_sysconfdir}/%{name}
 mkdir -p $GEONODE_CONF
+# local_settings.py
+install -m 775 %{SOURCE5} $GEONODE_CONF/local_settings.py
 
 # additions to geonode directory
-# local_settings.py
-install -m 755 %{SOURCE5} $LIB/%{name}/sdi/local_settings.py
 # robots.txt
 install -m 755 %{SOURCE6} $LIB/%{name}/sdi/templates/robots.txt
 # add robots.txt as a TemplateView in django original file is urls.py.bak
@@ -206,8 +207,8 @@ fi
 %{_localstatedir}/lib/%{name}/sdi/wsgi.py
 %config(noreplace) %{_sysconfdir}/%{name}/local_settings.py
 %defattr(775,%{name},%{name},775)
-%dir %{_localstatedir}/lib/%{name}/media
-%dir %{_localstatedir}/lib/%{name}/uploads
+%dir %{_localstatedir}/lib/%{name}/sdi/media
+%dir %{_localstatedir}/lib/%{name}/sdi/uploaded
 %defattr(744,%{name},%{name},744)
 %dir %{_localstatedir}/log/%{name}
 %defattr(644,%{name},%{name},644)
