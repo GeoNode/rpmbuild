@@ -17,7 +17,7 @@ SITEURL = 'http://localhost/'
 DATABASE_ENGINE = 'postgresql_psycopg2'
 DATABASE_NAME = 'geonode'
 DATABASE_USER = 'geonode'
-DATABASE_PASSWORD = 'geonode'
+DATABASE_PASSWORD = 'THE_DATABASE_PASSWORD'
 DATABASE_HOST = 'localhost'
 DATABASE_PORT = '5432'
 
@@ -46,7 +46,7 @@ GEOSERVER_URL = SITEURL + 'geoserver/'
 OGC_SERVER = {
     'default' : {
         'BACKEND' : 'geonode.geoserver',
-        'LOCATION' : 'http://localhost/geoserver/',
+        'LOCATION' : 'http://localhost:8080/geoserver/',
         'PUBLIC_LOCATION' : GEOSERVER_URL,
         'USER' : 'admin',
         'PASSWORD' : 'geoserver',
@@ -57,7 +57,7 @@ OGC_SERVER = {
         'WMST_ENABLED' : False,
         'BACKEND_WRITE_ENABLED': True,
         'WPS_ENABLED' : True,
-        'LOG_FILE':'/var/lib/geoserver/logs/geoserver.log',
+        'LOG_FILE':'/usr/share/geoserver/data/logs/geoserver.log',
         # Set to name of database in DATABASES dictionary to enable
         'DATASTORE': 'datastore',
     }
@@ -65,8 +65,8 @@ OGC_SERVER = {
 
 LANGUAGE_CODE = 'en'
 
-MEDIA_ROOT = '/var/lib/geonode/sdi/uploaded'
-STATIC_ROOT = '/var/lib/geonode/sdi/static/'
+MEDIA_ROOT = '/var/lib/geonode/uwsgi/uploaded'
+STATIC_ROOT = '/var/lib/geonode/uwsgi/static/'
 
 # secret key used in hashing, should be a long, unique string for each
 # site.  See http://docs.djangoproject.com/en/1.2/ref/settings/#secret-key
@@ -96,7 +96,7 @@ TEMPLATE_DIRS = (
 
 # Additional directories which hold static files
 STATICFILES_DIRS = [
-    '/var/lib/geonode/sdi/media',
+    '/var/lib/geonode/sdi/static',
     os.path.join(GEONODE_ROOT, 'static'),
 ]
 

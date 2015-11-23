@@ -108,6 +108,7 @@ changepassword()
 
 createsuperuser()
 {
+  echo "Creating django/geonode superuser"
   python2.7 /var/lib/geonode/manage.py createsuperuser
 }
 

@@ -129,7 +129,7 @@ mv %{name}-project-master %{name}
 pushd %{name}
 mkdir -p $LIB/%{name}
 mv project_name sdi
-mkdir -p $LIB/%{name}/sdi/{media,uploaded}
+mkdir -p $LIB/%{name}/uwsgi/{static,uploaded}
 popd && popd
 sed -i "s/{{ project_name }}/sdi/g" $LIB/%{name}/manage.py
 sed -i "s/{{ project_name }}/sdi/g" $LIB/%{name}/setup.py
@@ -207,8 +207,8 @@ fi
 %{_localstatedir}/lib/%{name}/sdi/wsgi.py
 %config(noreplace) %{_sysconfdir}/%{name}/local_settings.py
 %defattr(775,%{name},%{name},775)
-%dir %{_localstatedir}/lib/%{name}/sdi/media
-%dir %{_localstatedir}/lib/%{name}/sdi/uploaded
+%dir %{_localstatedir}/lib/%{name}/uwsgi/static
+%dir %{_localstatedir}/lib/%{name}/uwsgi/uploaded
 %defattr(744,%{name},%{name},744)
 %dir %{_localstatedir}/log/%{name}
 %defattr(644,%{name},%{name},644)
